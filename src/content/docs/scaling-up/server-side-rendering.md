@@ -36,7 +36,10 @@ There are also some disadvantages to consider when using SSR:
 
 #### Key considerations before choosing SSR
 
-Before using SSR for your app, the first question you should ask is whether you actually need it. It mostly depends on how important time-to-content is for your app. For example, if you are building an internal dashboard where an extra few hundred milliseconds on initial load doesn't matter that much, SSR would be an overkill. However, in cases where time-to-content is critical, SSR can help you achieve the best possible initial load performance.
+- Do you actually need SSR for your app? 
+- How important is time-to-content for your use case?
+  - For apps where an extra few hundred milliseconds on initial load doesnt matter, SSR is too much.
+  - For apps where time to content is critical, SSR can help you achieve the best possible initial load performance.
 
 
 ### Comparing Static Site Rendering (SSR) vs Static Site Generation (SSG)
@@ -54,7 +57,7 @@ Before using SSR for your app, the first question you should ask is whether you 
 ## Basic Tutorial
 
 
-### Rendering an App with SSR
+### Example: Rendering an app with SSR
 
 Let's take a look at a basic example of how Vue SSR works.
 
@@ -79,16 +82,21 @@ renderToString(app).then((html) => {
   console.log(html)
 })
 ```
+
 6. Run this code:
-``` sh
-> node example.js
+
+``` sh 
+
+node example.js 
 ```
+
 7. You should see this on the command line:
-```
+
+``` html
 <button>1</button>
 ```
 
-`renderToString()` takes a Vue app instance and returns a Promise that resolves to the rendered HTML of the app. It is also possible to stream rendering using the Node.js Stream API or Web Streams API. Check out the SSR API Reference for full details.
+`renderToString()` takes a Vue app instance and returns a Promise that resolves to the rendered HTML of the app. It is also possible to stream rendering using the [Node.js Stream API](https://nodejs.org/api/stream.html) or [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). Check out the [SSR API Reference](https://vuejs.org/api/ssr.html) for full details.
 
 We can then move the Vue SSR code into a server request handler, which wraps the application markup with the full page HTML. We will be using `express` for the next steps:
 
