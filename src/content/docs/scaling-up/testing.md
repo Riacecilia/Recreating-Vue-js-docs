@@ -1,5 +1,5 @@
 ---
-title: testing
+title: Testing
 description: A guide to testing in Vue.js
 ---
 
@@ -175,7 +175,7 @@ When end-to-end (E2E) tests are run in continuous integration/deployment pipelin
 
 A critical feature of modern E2E testing frameworks is the ability to see snapshots and/or videos of the application during testing, providing some insight into why errors are happening. Historically, it was tedious to maintain these integrations.
 
-#### Product Recommendations####
+#### Product Recommendations ####
 
 - Playwright is a great E2E testing solution that supports Chromium, WebKit, and Firefox. Test on Windows, Linux, and macOS, locally or on CI, headless or headed with native mobile emulation of Google Chrome for Android and Mobile Safari. It has an informative UI, excellent debuggability, built-in assertions, parallelization, traces and is designed to eliminate flaky tests. Support for Component Testing is available, but marked experimental. Playwright is open source and maintained by Microsoft.
 

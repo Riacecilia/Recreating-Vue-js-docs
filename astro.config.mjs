@@ -21,35 +21,35 @@ export default defineConfig({
 					autogenerate: { directory: 'reference' },
 				},
 				{
-					label: 'essentials',
-					items: [
-        // Using `slug` for internal links.
-        { label: 'class and style bindings', slug: 'essentials/class-and-style-bindings' },
-        { label: 'form input bindings' , slug: 'essentials/form-input-bindings' },
-		{ label: 'template syntax' , slug: 'essentials/template-syntax' }],
-				},
-				{
-					label: 'getting started',
+					label: 'Getting started',
 					 items: [
         // Using `slug` for internal links.
-        { label: 'introduction' , slug: 'getting-started/introduction' },
-        { label: 'quick start' , slug: 'getting-started/quick-start' }],
+        { label: 'Introduction' , slug: 'getting-started/introduction' },
+        { label: 'Quick start' , slug: 'getting-started/quick-start' }],
 				},
 				{
-					label: 'reusability',
+					label: 'Essentials',
 					items: [
         // Using `slug` for internal links.
-        { label: 'composables' , slug: 'reusability/composables' },
-        { label: 'custom directives' , slug: 'reusability/custom-directives' },
-		{ label: 'plugins', slug: 'reusability/plugins' }],
+        { label: 'Class and Style Bindings', slug: 'essentials/class-and-style-bindings' },
+        { label: 'Form Input Bindings' , slug: 'essentials/form-input-bindings' },
+		{ label: 'Template Syntax' , slug: 'essentials/template-syntax' }],
 				},
 				{
-					label: 'scaling up',
+					label: 'Reusability',
 					items: [
         // Using `slug` for internal links.
-        { label: 'server side rendering', slug: 'scaling-up/server-side-rendering' },
-        { label: 'state management', slug: 'scaling-up/state-management' },
-		{ label: 'testing' , slug: 'scaling-up/testing' }],
+        { label: 'Composables' , slug: 'reusability/composables' },
+        { label: 'Custom Directives' , slug: 'reusability/custom-directives' },
+		{ label: 'Plugins', slug: 'reusability/plugins' }],
+				},
+				{
+					label: 'Scaling up',
+					items: [
+        // Using `slug` for internal links.
+        { label: 'Server Side Rendering', slug: 'scaling-up/server-side-rendering' },
+        { label: 'State Management', slug: 'scaling-up/state-management' },
+		{ label: 'Testing' , slug: 'scaling-up/testing' }],
 				},
 			],
 		}),

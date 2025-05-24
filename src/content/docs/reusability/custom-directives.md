@@ -1,4 +1,4 @@
 ---
-title: custom directives
+title: Custom Directives
 description: A guide in my new Starlight docs site.
 ---

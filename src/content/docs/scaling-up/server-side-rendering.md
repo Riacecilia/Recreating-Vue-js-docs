@@ -1,5 +1,5 @@
 ---
-title: server side rendering
+title: Server Side Rendering
 description: How to use server-side rendering in Vue.js
 ---
 Server side rendering is
