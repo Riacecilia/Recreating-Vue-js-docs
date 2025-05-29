@@ -296,27 +296,3 @@ export function useFetch(url) {
     - otherwise, it will re-run whenever a tracked dependency changes.
 
 
-
-
-## Conventions when using Composables ##
-
-
-## Extracting Composables for Code Organisation ## 
-
-
-## Composables in Option API ##
-
-
-## Composables vs other techniques ##
-
-### Composables vs Mixins ###
-
-### Composables vs Renderless Components ###
-
-
-### Composables vs React Hooks ### 
-
-
-## Further Reading ## 
-
-

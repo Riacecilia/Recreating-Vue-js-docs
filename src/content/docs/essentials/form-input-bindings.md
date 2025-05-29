@@ -213,8 +213,12 @@ Checked names: []
 ***
 
 
-## Radio ##
+## Radio Buttons ##
 
+**Purpose:**  Creates an "either/or" choice mechanism using radio buttons that updates based on user input.
+
+
+**Implementation**
 
 ```markdown
 <div>Picked: {{ picked }}</div>
@@ -233,13 +237,45 @@ OneTwo
 
 ```
 
+**Code Analysis:**
+
+
+Initial State:
+- Let's assume your Vue component's data has `picked: ''` (an empty string) or `picked: 'One'` initially.
+- If `picked` is `''`, neither radio button will be checked.
+- If `picked` is '`One`', the first radio button will be checked.
+- The `div` will display: `Picked:` followed by the initial value of `picked`.
+
+User Selects "`One`":
+
+- The user clicks the radio button labeled "`One`".
+- The `v-model="picked`" on that radio button assigns its `value` ("One") to the picked data property. So, `picked` now becomes "`One`".
+- Because the `div` is bound to `picked`, it immediately updates to display: `Picked: One`.
+- If "Two" was previously selected, `v-model` automatically deselects it.
+
+User Selects "Two":
+
+- The user then clicks the radio button labeled "Two".
+- The `v-model="picked`" on that radio button assigns its `value` ("Two") to the `picked` data property. So, `picked` now becomes "`Two`".
+- The `div` immediately updates to display: `Picked: Two`.
+- The first radio button ("One") automatically becomes deselected because Vue understands that only one radio button bound to the same `v-model` variable can be active.
+
+
+In summary, when a user selects an option, the picked data property is updated with the value of the chosen radio button, and that chosen value is immediately displayed on the page.
 
 
 ***
 
 
-## Select ##
+## Select Buttons ##
 
+### Single select button ### 
+
+
+**Purpose:** Use a dropdown menu (select element) in Vue.js to allow a user to choose one option from a list, and how v-model effectively manages that single selection.
+
+
+**Implementation**
 
 ```markdown
 <div>Selected: {{ selected }}</div>
@@ -253,13 +289,29 @@ OneTwo
 
 ```
 
+
+**Code Analysis:**
+
+This code creates a user-friendly dropdown menu where the currently chosen option's value is stored in the selected data property, and that value is simultaneously displayed live on the page, providing clear feedback to the user.
+
+
+
 :::note
 If the initial value of your `v-model` expression does not match any of the options, the `<select>` element will render in an "unselected" state. On iOS this will cause the user not being able to select the first item because iOS does not fire a change event in this case. It is therefore recommended to provide a disabled option with an empty value, as demonstrated in the example above.
 
 :::
 
+***
 
-Multiple select (bound to array)
+
+### Multiple select button (bound to array) ###
+
+
+**Purpose:** allows the user to select multiple options from the drop down list.
+
+
+**Implementation**
+
 
 ```markdown
 <div>Selected: {{ selected }}</div>
@@ -272,8 +324,48 @@ Multiple select (bound to array)
 
 ```
 
-Select options can be dynamically rendered with v-for:
+**Code Analysis**
 
+How it works together (Multi-Selection):
+
+- Initial State:
+  - You must define selected: `[]` (an empty array) in your Vue component's data.
+  - The `<div>` will display: `Selected:`.
+  - The multi-select dropdown will be displayed (likely as a box allowing multiple selections, not a single line dropdown) with no options initially selected.
+
+- User Selects "A":
+  - The user clicks "A".
+  - `v-model="selected"` adds "A" to the selected array. selected becomes [`'A'`].
+  - The `<div>` updates to `Selected: A`.
+
+- User Selects "C" (while "A" is still selected):
+  - The user holds Ctrl/Cmd and clicks "C".
+  - v-model="selected" adds "C" to the selected array. selected becomes ['A', 'C'].
+  - The <div> updates to Selected: A,C.
+
+- User Deselects "A":
+  - The user holds Ctrl/Cmd and clicks "A" again.
+  - v-model="selected" removes "A" from the selected array. selected becomes ['C'].
+  - The <div> updates to Selected: C.
+
+This code creates a multi-selection list box where users can choose several options. 
+
+***
+
+
+## Dynamically rendering select buttons ##
+
+
+Select options can be dynamically rendered with `v-for:`
+
+
+**Purpose:**  Create a dynamic dropdown menu, whose options are not fixed or hardcoded directly into the HTML, but rather are generated at runtime based on certain conditions or data.
+
+
+This pattern is widely used for creating user interfaces where dropdown lists need to be populated from data coming from an API, a database, or other dynamic sources.
+
+
+**Implementation:**
 
 ```js
 export default {
@@ -302,3 +394,19 @@ export default {
 <div>Selected: {{ selected }}</div>
 
 ```
+
+**Code Analysis**
+
+- Component Initialization:
+  - Vue sees the `options` array in your data.
+  - It then uses `v-fo`r` to loop through options.
+  - For the first `option` (`{ text: 'One', value: 'A' }`), it generates `<option value="A">One</option>`.
+  - For the second `option` (`{ text: 'Two', value: 'B' }`), it generates `<option value="B">Two</option>`.
+  - And so on.
+  - The dropdown is populated with "One", "Two", "Three" as visible options.
+  - The `selected` display will show the initial value of selected (e.g., empty).
+
+    User Interaction:
+  - The user opens the dropdown and selects "Two".
+  - The `v-model="selected"` directive automatically updates the selected data property to the value of the chosen option, which is `"B"`.
+  - The `<div>Selected: {{ selected }}</div>` instantly updates to display Selected: B.

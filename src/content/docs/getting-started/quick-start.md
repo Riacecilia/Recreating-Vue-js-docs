@@ -109,7 +109,9 @@ This command will typically start a local development server (often on `http://l
 
 Open your web browser and navigate to the URL provided by the `npm run dev` command (e.g., `http://localhost:5173/`). You'll see a basic Vue.js welcome page.
 
-Now you have a fully scaffolded Vue.js SPA ready for development! You can open the project in your code editor and start building out your application's components, routes, and logic.
+Now you have a fully scaffolded Vue.js SPA ready for development! 
+
+You can open the project in your code editor and start building out your application's components, routes, and logic.
 
 ### Key Things to Know After Scaffolding
 

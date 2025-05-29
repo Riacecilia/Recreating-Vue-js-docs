@@ -8,7 +8,7 @@ In HTML, a class is a reusable label or category applied to elements, allowing y
 
 In contrast, an inline style is a direct, one-off instruction applied to a single element for specific visual properties (e.g., making this one paragraph red)
 
-On this page you will learn how to: 
+You will learn how to: 
 - toggle, add, or remove CSS classes on an element conditionally
 
 
@@ -20,27 +20,21 @@ For example: If your information says "it's active," the element automatically g
 
 This makes your web page look and behave differently without you having to write lots of complicated instructions every time something changes. 
 
-There are a few ways to do this. You can
-- Bind to objects : Apply/remove different styles based on whether information meets certain conditions.  
-- Bind to arrays: You want the UI to combine some fixed styles with conditional ones.
-- Bind with components: You need a two-way data binding between a parent component's data property and a custom child component's internal value. For example: Imagine you have a remote control for a toy car.
-
-    - If you use binding with components, when you move the joystick on the remote, the car's speed changes. But also, if the car hits something and slows down, the joystick on your remote itself moves back to reflect the car's new speed. Both ends are connected and update each other.
-
 ### Binding to Objects ###
-**Example 1: How to change the appearance of something reactively**  
+**Example:**  
 
 In a real life scenario, we would need this if we wanted to control how some content on a webpage appears. 
 
-Aim: You want to control the appearance of some content  on your webpage 
+**Aim:**
+You want to control the appearance of some content  on your webpage 
 
-Implementation: Use the following code:
+**Implementation:** Use the following code:
 
-```html
+```markdown
 <div :class="{ active: isActive }"></div>
 ```
 
-Code analysis:
+**Code analysis:**
 - `:class` is shorthand for the Vue directive `v-bind`. This is what makes the class attribute dynamic and tells Vue to bind its value to data.
 
 - if `isActive` is true, the content in `div` will have all the defined styles for the `.active` CSS class applied.
@@ -50,12 +44,16 @@ Code analysis:
 *** 
 
 
-**Example 2: Adding conditional styling based on different states of components data** 
+**Example:** 
+
+
+You can have multiple classes toggled by having more fields in the object. In addition, the `:class` directive can also co-exist with the plain `class` attribute. 
 
 In a real life scenario, we would need this if we wanted to build a dynamic user interface where elements visually respond to changes in your application's state.
 
 
-Implementation:
+**Implementation:**
+
 Given the following state: 
 
 ```js 
@@ -68,7 +66,8 @@ data() {
 ```
 
 And the following template:
-``` html
+
+``` markdown
 <div
   class="static"
   :class="{ active: isActive, 'text-danger': hasError }"
@@ -98,11 +97,14 @@ Code analysis:
 ***
 
 
-**Example 3: bind to a computed property that returns an object**
+**Example:**
+
+We can also bind to a [computed property](https://vuejs.org/guide/essentials/computed.html) that returns an object. This is a common and powerful pattern.
+
 
 In a real life scenario, we would use this if we wanted to control data that is derived from other exisiting data.
 
-Implementation
+**Implementation:**
 
 ```js 
 data() {
@@ -128,75 +130,176 @@ computed: {
 
 ```
 
-Code analysis
-Scenario Example:
+**Code analysis:**
 
-- Initial State:
-    - isActive is true
-    - error is null
-    - classObject will return { active: true, 'text-danger': false }.
-    - The div will have the active class applied.
+- The initial state:
+    - `isActive` is `true`
+    - `error` is `null`
+    - `classObject` will return { active: true, 'text-danger': false }.
+    - The `div` will have the active class applied.
 
 - Something becomes inactive:
-    - If you later set this.isActive = false; (e.g., via a button click or other logic):
-    - classObject will automatically re-calculate: { active: false, 'text-danger': false }.
-    - The active class will be removed from the div.
+    - If you later set `this.isActive = false`; (e.g., via a button click or other logic):
+    - `classObject` will automatically re-calculate: { active: false, 'text-danger': false }.
+    - The `active` class will be removed from the div.
 
 - A fatal error occurs:
-    -  If you set this.error = { type: 'fatal', message: 'Something went terribly wrong!' };
-    - classObject will automatically re-calculate: { active: false, 'text-danger': true }. (Because !this.error is now false, active becomes false).
-    - The div will have the text-danger class applied, and the active class removed.
+    -  If you set `this.error` = { type: 'fatal', message: 'Something went terribly wrong!' };
+    - `classObject` will automatically re-calculate: { active: false, 'text-danger': true }. (Because `!this.error` is now false, `active` becomes false).
+    - The `div` will have the `text-danger` class applied, and the `active` class removed.
 
 
+In summary , this code creates a dynamic object that determines which CSS classes should be applied to an element. This classObject will automatically update whenever isActive or error (or properties within error) change.
 
 ***
 
 
 ### Binding to Arrays ###
 
-In a real life scenario we would use this to apply a list of classes 
+
+**Example:**
+
+We can bind `:class` to an array to apply a list of classes:
+
+**Implementation:**
 
 
-Implementation
+```js
+data() {
+  return {
+    activeClass: 'active',
+    errorClass: 'text-danger'
+  }
+}
+```
+
+```markdown
+<div :class="[activeClass, errorClass]"></div>
+
 ```
 
 
-
-
-
+Which will render:
+```markdown
+<div class="active text-danger"></div>
 
 ```
 
+**Code Analysis:**
 
-Code analysis
+When these two snippets are used together in a Vue component:
 
+- The data() block sets up two reactive variables, `activeClass` and `errorClass`, holding the strings '`active`' and '`text-danger`' respectively.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- The `<div :class="[activeClass, errorClass]"></div>` line in the template instructs Vue to take the values of these two data properties and add them as CSS classes to the div.
 
 ***
+
+
+**Example 5:**
+
+To toggle a class in the list conditionally, you can do it with a ternary expression:
+
+**Implementation:**
+
+
+```markdown
+<div :class="[isActive ? activeClass : '', errorClass]"></div>
+```
+
+**Code Analysis:**
+
+In summary, the functionality of this code is to:
+
+- Conditionally apply one CSS class: The `div` will gain the class specified by `activeClass` only if the `isActive` data property is true. If `isActive` is false, that class will not be present.
+- Always apply another CSS class: The `div` will always have the CSS class specified by the `errorClass` data property.
+
+***
+
+
+**Example:**
+
+However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside the array syntax:
+
+**Implementation:**
+
+
+```markdown
+<div :class="[{ [activeClass]: isActive }, errorClass]"></div>
+```
+
+
+**Code Analysis:**
+
+This approach is more powerful than the previous example because it allows you to:
+
+- Conditionally apply a class.
+- The name of that class can also be dynamic. This is slightly more flexible than the ternary if `activeClass` itself might change (though in most cases, `activeClass` is a stable string, making the difference minimal for just one conditional class).
+- It's particularly useful when you have multiple conditional classes all depending on different booleans
+
+***
+
+
 ### Binding with Components ###
-## Binding Inline Styles ## 
 
-Bind to appy inline CSS styles to an element
-Bind an array of style objects. The styles will be merged together
+>This section assumes knowledge of [Components](https://vuejs.org/guide/essentials/component-basics.html). Feel free to skip it and come back later.
 
-### Binding to Objects ###
-### Binding to Arrays ###
-### Auto-Prefixing ### 
 
-You just tell it the standard CSS property you want to use (transform), and Vue figures out if it needs to add special browser-specific versions (-webkit-transform, -moz-transform, etc.) behind the scenes so that your styles look correct in as many browsers as possible, without you having to write all those extra lines of code. This makes your CSS binding cleaner and saves you from manually managing browser compatibility for certain bleeding-edge or older CSS features
+When you use the `class` attribute on a component with a single root element, those classes will be added to the component's root element and merged with any existing class already on it.
 
-### Multiple Values ### 
+For example, if we have a component named `MyComponent` with the following template:
+
+
+```markdown
+<!-- child component template -->
+<p class="foo bar">Hi!</p>
+
+```
+
+Then add some classes when using it:
+
+```markdown
+<!-- when using the component -->
+<MyComponent class="baz boo" />
+
+```
+
+The rendered HTML will be:
+
+```markdown
+<p class="foo bar baz boo">Hi!</p>
+```
+
+
+The same is true for class bindings:
+
+```markdown
+<MyComponent :class="{ active: isActive }" />
+```
+
+When isActive is truthy, the rendered HTML will be:
+
+```markdown
+<p class="foo bar active">Hi!</p>
+```
+
+If your component has multiple root elements, you would need to define which element will receive this class. You can do this using the `$attrs` component property:
+
+```markdown
+<!-- MyComponent template using $attrs -->
+<p :class="$attrs.class">Hi!</p>
+<span>This is a child component</span>
+```
+
+```markdown
+<MyComponent class="baz" />
+```
+
+Will render:
+
+```html
+<p class="baz">Hi!</p>
+<span>This is a child component</span>
+```
+
+You can learn more about component attribute inheritance in [Fallthrough Attributes](https://vuejs.org/guide/components/attrs.html) section. 
