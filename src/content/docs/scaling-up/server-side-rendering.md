@@ -5,16 +5,18 @@ description: How to use server-side rendering in Vue.js
 Server side rendering is
 
 
-## What is SSR?
+## What is SSR? ##
 
 Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
 
 A server-rendered Vue.js app can also be considered "isomorphic" or "universal", in the sense that the majority of your app's code runs on both the server and the client.
 
 
-### Advantages and Disadvantages of SSR compared with Client Side SPA
+***
 
-#### Advantages
+
+### Advantages of SSR ### 
+
 
 Compared to a client-side Single-Page Application (SPA), SSR has the following advantages: 
 
@@ -24,7 +26,11 @@ Compared to a client-side Single-Page Application (SPA), SSR has the following a
 
 - **Better SEO**: the search engine crawlers will directly see the fully rendered page.
 
-#### Disadvantages 
+
+***
+
+
+### Disadvantages of SSR ###
 
 There are also some disadvantages to consider when using SSR:
 
@@ -34,7 +40,11 @@ There are also some disadvantages to consider when using SSR:
 
 - **More server-side load. Rendering a full app in Node**.js is going to be more CPU-intensive than just serving static files, so if you expect high traffic, be prepared for corresponding server load and wisely employ caching strategies.
 
-#### Key considerations before choosing SSR
+
+***
+
+
+### Key considerations before choosing SSR ###
 
 - Do you actually need SSR for your app? 
 - How important is time-to-content for your use case?
@@ -42,7 +52,10 @@ There are also some disadvantages to consider when using SSR:
   - For apps where time to content is critical, SSR can help you achieve the best possible initial load performance.
 
 
-### Comparing Static Site Rendering (SSR) vs Static Site Generation (SSG)
+***
+
+
+### Static Site Rendering (SSR) vs Static Site Generation (SSG) ###
 
 | Feature           | SSR                                                                  | SSG                                                                               |
 |-------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------|
@@ -54,8 +67,10 @@ There are also some disadvantages to consider when using SSR:
 | Data Updates      | Requires a new build and deployment to reflect changes.              | Data is updated in real-time with each request.                                   |
 
 
-## Basic Tutorial
+***
 
+
+## Basic Tutorial
 
 ### Example: Rendering an app with SSR
 
@@ -96,12 +111,20 @@ node example.js
 <button>1</button>
 ```
 
-`renderToString()` takes a Vue app instance and returns a Promise that resolves to the rendered HTML of the app. It is also possible to stream rendering using the [Node.js Stream API](https://nodejs.org/api/stream.html) or [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). Check out the [SSR API Reference](https://vuejs.org/api/ssr.html) for full details.
+`renderToString()` takes a Vue app instance and returns a Promise that resolves to the rendered HTML of the app. 
+
+:::note
+It is also possible to stream rendering using the [Node.js Stream API](https://nodejs.org/api/stream.html) or [Web Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API). 
+
+Check out the [SSR API Reference](https://vuejs.org/api/ssr.html) for full details.
+
+:::
+
 
 We can then move the Vue SSR code into a server request handler, which wraps the application markup with the full page HTML. We will be using `express` for the next steps:
 
-1. Run `npm install express`
-2. Create the following `server.js` file:
+8. Run `npm install express`
+9. Create the following `server.js` file:
 
 ``` js
 import express from 'express'
@@ -135,8 +158,11 @@ server.listen(3000, () => {
   console.log('ready')
 })
 ```
-3. run node server.js and visit http://localhost:3000.
-4. You should see the page working with the button.
+10. run node server.js and visit http://localhost:3000.
+11. You should see the page working with the button.
+
+
+***
 
 
 ### Client Hydration
@@ -160,11 +186,17 @@ const app = createSSRApp({
 app.mount('#app')
 ```
 
+***
+
+
 ### Code Structure
 
 Notice how we need to reuse the same app implementation as on the server. This is where we need to start thinking about code structure in an SSR app - how do we share the same application code between the server and the client?
 
-Here we will demonstrate the most bare-bones setup. First, let's split the app creation logic into a dedicated file, `app.js`:
+Here we will demonstrate a basic setup. 
+
+1. Split the app creation logic into a dedicated file, `app.js`:
+
 
 ``` js
 // app.js (shared between server and client)
@@ -178,9 +210,12 @@ export function createApp() {
 }
 ```
 
+
 This file and its dependencies are shared between the server and the client - we call them universal code. There are a number of things you need to pay attention to when writing universal code, as we will discuss below.
 
-Our client entry imports the universal code, creates the app, and performs the mount:
+
+2. Our client entry imports the universal code, creates the app, and performs the mount:
+
 
 ``` js
 // client.js
@@ -189,7 +224,8 @@ import { createApp } from './app.js'
 createApp().mount('#app')
 ```
 
-And the server uses the same app creation logic in the request handler:
+3. The server uses the same app creation logic in the request handler:
+
 
 ``` js
 // server.js (irrelevant code omitted)
@@ -203,27 +239,36 @@ server.get('/', (req, res) => {
 })
 ```
 
+
 In addition, in order to load the client files in the browser, we also need to:
 
-1. Serve client files by adding `server.use(express.static('.'))` in `server.js`.
-2.  Load the client entry by adding `<script type="module" src="/client.js"></script>` to the HTML shell.
-3.  Support usage like `import * from 'vue'` in the browser by adding an Import Map to the HTML shell.
+4. Serve client files by adding `server.use(express.static('.'))` in `server.js`.
 
-Try the completed example on StackBlitz. The button is now interactive!
+5.  Load the client entry by adding `<script type="module" src="/client.js"></script>` to the HTML shell.
+
+6.  Support usage like `import * from 'vue'` in the browser by adding an Import Map to the HTML shell.
+
+
+Try the completed example on [StackBlitz](https://stackblitz.com/edit/vue-ssr-example-yfk3j4qo?file=package.json). The button is now interactive!
+
+
+***
 
 
 ## Recommendations for SSR solutions
 
-Moving from the example to a production-ready SSR app involves a lot more. We will need to:
+Moving from the example to a production-ready SSR app involves additional steps such as:
 
-Support Vue SFCs and other build step requirements. In fact, we will need to coordinate two builds for the same app: one for the client, and one for the server.
+- Support Vue SFCs and other build step requirements. In fact, two builds are needed for the same app: one for the client, and one for the server.
 
 
-In the server request handler, render the HTML with the correct client-side asset links and optimal resource hints. We may also need to switch between SSR and SSG mode, or even mix both in the same app.
+- In the server request handler, render the HTML with the correct client-side asset links and optimal resource hints. We may also need to switch between SSR and SSG mode, or even mix both in the same app.
 
-Manage routing, data fetching, and state management stores in a universal manner.
+- Manage routing, data fetching, and state management stores in a universal manner.
 
-A complete implementation would be quite complex and depends on the build toolchain you have chosen to work with. Therefore, we highly recommend going with a higher-level, opinionated solution that abstracts away the complexity for you. Below we will introduce a few recommended SSR solutions in the Vue ecosystem.
+A complete implementation would be quite complex and depends on the build toolchain you have chosen to work with. 
+
+If you're looking to build an SSR application with Vue, we strongly suggest using a more comprehensive framework that handles the tricky parts for you. Here are some of our top recommendations from the Vue ecosystem:
 
 ### Nuxt
 
@@ -239,10 +284,7 @@ Quasar is a complete Vue-based solution that allows you to target SPA, SSR, PWA,
 
 Vite provides built-in support for Vue server-side rendering, but it is intentionally low-level. If you wish to go directly with Vite, check out vite-plugin-ssr, a community plugin that abstracts away many challenging details for you.
 
-You can also find an example Vue + Vite SSR project using manual setup here, which can serve as a base to build upon. Note this is only recommended if you are experienced with SSR / build tools and really want to have complete control over the higher-level architecture.
+You can consult an [example Vue + Vite SSR project](https://github.com/vitejs/vite-plugin-vue/tree/main/playground/ssr-vue) achieved using manual setup. This sample project can serve as a base to build upon. Note, a manual setup is only recommended if you are experienced with SSR / build tools and really want to have complete control over the higher-level architecture.
 
-
-## Writing SSR-friendly code
-###
 
 

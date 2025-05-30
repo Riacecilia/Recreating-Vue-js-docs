@@ -5,7 +5,7 @@ description: A guide to writing custom directives in Vue.
 
 ## Introduction ##
 
-In addition to the built-in directives (like v-model or v-show), Vue also allows you to register your own custom directives.
+In addition to the built-in directives (like `v-model` or `v-show`), Vue also allows you to register your own custom directives.
 
 A custom directive is a way to reuse logic that involves low-level DOM manipulation on plain elements. While Vue's built-in directives handle common DOM interactions, custom directives allow you to create your own specialized DOM behaviors.
 
@@ -13,14 +13,14 @@ A custom directive is a way to reuse logic that involves low-level DOM manipulat
 ***
 
 
-## When to use custom directives ##
+## When to Use Custom Directives ##
 
 
 Custom directives should be used when you need to directly manipulate the DOM element the directive is bound to, and that manipulation doesn't warrant creating a full component. 
 
 
 Examples scenarios include:
-- Adding focus to an input field (v-focus).
+- Adding focus to an input field (`v-focus`).
 - Implementing a simple tooltip or popover.
 - Resizing an element.
 - Integrating a third-party library that directly interacts with the DOM.
@@ -40,7 +40,7 @@ Examples scenarios include:
 
 Example
 
-**Aim:**
+**Purpose:**
 This code defines a custom directive called `highlight` and uses it to highlight a sentence.
 
 
@@ -67,7 +67,7 @@ export default {
 ```
 
 
-**Code analysis**
+**Code analysis:**
 
 The first snippet: 
 - Defines a custom directive named highlight.
@@ -85,13 +85,13 @@ The second snippet:
 
 ## Directive Hooks ##
 
-Directive Hooks are specific, named functions (like mounted, updated, unmounted, beforeUpdate, created, etc.) that Vue calls automatically at different stages of the lifecycle of the element the directive is bound to. 
+Directive Hooks are specific, named functions (like `mounted`, `updated`, `unmounted`, `beforeUpdate`, `created`, etc.) that Vue calls automatically at different stages of the lifecycle of the element the directive is bound to. 
 
 
 These hooks are where you write the actual JavaScript code that implements the directive's behavior.
 
 
-Without directive hooks, a custom directive would do nothing. The hooks are the entry points where you get access to the DOM element (el) and other binding information to perform your desired operations.
+Without directive hooks, a custom directive would do nothing. The hooks are the entry points where you get access to the DOM element (`el`) and other binding information to perform your desired operations.
 
 
 A directive definition object can provide several hook functions (all optional):
@@ -150,7 +150,6 @@ Hook arguments
 <div v-example:foo.bar="baz">
 ```
 
-Aim:
 
 ```js
 {
@@ -172,7 +171,7 @@ Here the directive argument will be reactively updated based on arg property in 
 
 
 :::note
-Apart from el, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's dataset.
+Apart from `el`, you should treat these arguments as read-only and never modify them. If you need to share information across hooks, it is recommended to do so through element's dataset.
 
 :::
 
@@ -247,5 +246,5 @@ When used on components, custom directives will always apply to a component's ro
 ```
 
 
-Note that components can potentially have more than one root node. When applied to a multi-root component, a directive will be ignored and a warning will be thrown. Unlike attributes, directives can't be passed to a different element with v-bind="$attrs".
+Note that components can potentially have more than one root node. When applied to a multi-root component, a directive will be ignored and a warning will be thrown. Unlike attributes, directives can't be passed to a different element with `v-bind="$attrs"`.
 

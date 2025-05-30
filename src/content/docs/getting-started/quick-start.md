@@ -28,7 +28,7 @@ cd your/preferred/directory
 
 #### Step 2: Run `create-vue` to Scaffold Your Project
 
-This is the core scaffolding step. Scaffolding is the process of automatically generating the basic structure, boilerplate code, and configuration files for a new SPA project. `create-vue` is the official tool that will set up your project with sensible defaults and allow you to customize features.
+Scaffolding is the process of automatically generating the basic structure, boilerplate code, and configuration files for a new SPA project. `create-vue` is the official tool that will set up your project with sensible defaults and allow you to customize features.
 
 ```bash
 npm create vue@latest
@@ -46,7 +46,7 @@ Once you run the command, `create-vue` will guide you through a series of intera
 
 **Example interaction:**
 
-```
+```markdown
 Need to install the following packages:
   create-vue@latest
 Ok to proceed? (y) y
@@ -66,18 +66,15 @@ Vue.js - The Progressive JavaScript Framework
 
 Scaffolding project in /Users/youruser/your/preferred/directory/my-vue-spa...
 
-Done. Now run:
+Done. 
 
-  cd my-vue-spa
-  npm install
-  npm run dev
 ```
 
 #### Step 4: Navigate into Your Project Directory
 
 After the scaffolding process completes, change your current directory to your newly created project:
 
-```bash
+```sh
 cd my-vue-spa
 ```
 
@@ -87,7 +84,7 @@ cd my-vue-spa
 
 Your project needs to download all the necessary packages (Vue, Vite, Router, Pinia, etc.) defined in its `package.json` file.
 
-```bash
+```sh
 npm install
 ```
 
@@ -95,7 +92,7 @@ npm install
 
 #### Step 6: Start the Development Server
 
-Once dependencies are installed, you can start the development server to see your new Vue.js SPA.
+Once dependencies are installed, you can start the development server to see your new Vue.js Singla Page Application.
 
 ```bash
 npm run dev

@@ -6,16 +6,18 @@ description: A guide to using composables in Vue.
 
 A "composable" is a function that leverages Vue's Composition API to encapsulate and reuse stateful logic.
 
-Stateful logic is code or a system that remembers information about its past interactions, inputs, or conditions. This "remembered information" is called its state. The behavior or output of stateful logic at any given moment depends not only on its current inputs but also on its accumulated state from previous operations.
+**Stateful logic** is code or a system that remembers information about its past interactions, inputs, or conditions.
 
-Composables are becomes beneficial (and recommended) when you have a piece of stateful logic that needs to be shared and reused across multiple components in your Vue.js application. 
+The behavior or output of stateful logic at any given moment depends not only on its current inputs but also on its accumulated state from previous operations.
 
-For example: when managing authentification status and user information in an application. The code often needs to verify authentification at log in, when viewing other users profiles or when trying to access restricted content.
+Composables are beneficial (and recommended) when you have a piece of stateful logic that needs to be shared and reused across multiple components in your Vue.js application. 
+
+Real life example: composables are used when managing authentification status and user information in an application. The code often needs to verify authentification at log in, when viewing other users profiles or when trying to access restricted content.
 
 
 ## Mouse tracker example ##
 
-**Aim** 
+**Purpose** 
 
 To track and display the real-time position of the user's cursor on the screen.
 
@@ -112,7 +114,7 @@ export function useEventListener(target, event, callback) {
 ```
 
 
-And now our useMouse() composable can be simplified to:
+And now our `useMouse()` composable can be simplified to:
 
 ```js
 // mouse.js
@@ -143,8 +145,7 @@ Each component instance calling `useMouse()` will create its own copies of `x` a
 
 ## Async state example ##
 
-**Aim**
-This Vue.js code defines a component that fetches data from a remote API endpoint and displays its content, along with handling loading and error states.
+**Purpose:** This Vue.js code defines a component that fetches data from a remote API endpoint and displays its content, along with handling loading and error states.
 
 **Implementation**
 
@@ -224,12 +225,14 @@ const { data, error } = useFetch('...')
 
 ### Async state example with reactive state ##
 
+**Purpose:** create a reusable function that can handle data fetching and state management while automatically updating the UI when that async data changes.
+
+
 In the previous example, `useFetch()` takes a static URL string as input - so it performs the fetch only once and is then done. What if we want it to re-fetch whenever the URL changes? 
 
-To do this, we need to pass reactive state into the composable function, and let the composable create watchers that perform actions using the passed state.
+**Implementation**
 
 
-### Composable with a ref ### 
 For example, `useFetch()` should be able to accept a ref:
 
 ```js
@@ -241,7 +244,7 @@ const { data, error } = useFetch(url)
 url.value = '/new-url'
 ```
 
-### Composable with functions ###
+
 
 `useFetch()` should be able to accept a [getter function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get#description):
 
@@ -251,7 +254,7 @@ url.value = '/new-url'
 const { data, error } = useFetch(() => `/posts/${props.id}`)
 ```
 
-### Composables with APIs ###
+
 We can refactor our existing implementation with the `watchEffect()` and `toValue()` APIs:
 
 ```js

@@ -25,7 +25,7 @@ This makes your web page look and behave differently without you having to write
 
 In a real life scenario, we would need this if we wanted to control how some content on a webpage appears. 
 
-**Aim:**
+**Purpose:**
 You want to control the appearance of some content  on your webpage 
 
 **Implementation:** Use the following code:
@@ -44,12 +44,11 @@ You want to control the appearance of some content  on your webpage
 *** 
 
 
-**Example:** 
+**Example** 
 
+**Purpose:** To dynamically apply multiple CSS classes to an element based on different conditions while still allowing static classes to be used alongside. 
 
-You can have multiple classes toggled by having more fields in the object. In addition, the `:class` directive can also co-exist with the plain `class` attribute. 
-
-In a real life scenario, we would need this if we wanted to build a dynamic user interface where elements visually respond to changes in your application's state.
+In a real life scenario, we would need this if we wanted to build a dynamic user interface where elements visually respond to changes in your application's state. For example a form filling field which shows errors or valid states for inputed data.
 
 
 **Implementation:**
@@ -97,12 +96,13 @@ Code analysis:
 ***
 
 
-**Example:**
+**Example**
 
-We can also bind to a [computed property](https://vuejs.org/guide/essentials/computed.html) that returns an object. This is a common and powerful pattern.
+**Purpose:** Using computed properties to dynamically apply CSS classes based on component state and error conditions.
 
+This is a common and powerful pattern.
 
-In a real life scenario, we would use this if we wanted to control data that is derived from other exisiting data.
+In a real life scenario, we would use this if we wanted to control data that is derived from other exisiting data. For example: a form input field that shows as highlighted when focused but displays in red if there's a validation error.
 
 **Implementation:**
 
@@ -149,7 +149,7 @@ computed: {
     - The `div` will have the `text-danger` class applied, and the `active` class removed.
 
 
-In summary , this code creates a dynamic object that determines which CSS classes should be applied to an element. This classObject will automatically update whenever isActive or error (or properties within error) change.
+In summary , this code creates a dynamic object that determines which CSS classes should be applied to an element. This `classObject` will automatically update whenever `isActive` or error (or properties within error) change.
 
 ***
 
@@ -157,9 +157,9 @@ In summary , this code creates a dynamic object that determines which CSS classe
 ### Binding to Arrays ###
 
 
-**Example:**
+**Example: Basic Array Syntax**
 
-We can bind `:class` to an array to apply a list of classes:
+**Purpose:** Bind `:class` to an array to apply a list of classes to an element
 
 **Implementation:**
 
@@ -196,9 +196,9 @@ When these two snippets are used together in a Vue component:
 ***
 
 
-**Example 5:**
+**Example: Conditional Classes in Arrays**
 
-To toggle a class in the list conditionally, you can do it with a ternary expression:
+**Purpose:** To toggle classes conditionally within the array using ternary expressions, so a class will only apply when isActive is truthy.
 
 **Implementation:**
 
@@ -217,9 +217,12 @@ In summary, the functionality of this code is to:
 ***
 
 
-**Example:**
+**Example: Mixed Syntax**
 
-However, this can be a bit verbose if you have multiple conditional classes. That's why it's also possible to use the object syntax inside the array syntax:
+**Purpose:** to combine the flexibility of both object-based and array-based class binding in a single directive.
+
+It allows a user to apply both static classes (from the array) and conditional classes (from the object)
+
 
 **Implementation:**
 
@@ -231,11 +234,13 @@ However, this can be a bit verbose if you have multiple conditional classes. Tha
 
 **Code Analysis:**
 
-This approach is more powerful than the previous example because it allows you to:
+This mixed syntax approach is useful when:
+-  You have multiple classes that should always be applied,
+-  You want to conditionally include classes using ternary operators within the array.
 
-- Conditionally apply a class.
-- The name of that class can also be dynamic. This is slightly more flexible than the ternary if `activeClass` itself might change (though in most cases, `activeClass` is a stable string, making the difference minimal for just one conditional class).
-- It's particularly useful when you have multiple conditional classes all depending on different booleans
+**Real-world benefit:**
+Instead of writing separate static classes and conditional logic, you can handle both in one clean expression. This is especially useful for UI components like buttons, form inputs, or cards that need a base set of styling classes plus state-dependent classes.
+
 
 ***
 

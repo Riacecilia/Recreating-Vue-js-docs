@@ -3,7 +3,7 @@ title: Template Syntax
 description: Explaining Vue's template syntax.
 ---
 
-Vue uses regular HTML to build the look of your website. You add special instructions to this HTML to connect it directly to your data. Template Syntax in Vue is these special rules and elements you add to regular HTML to make your website dynamic and interactive.
+Vue uses regular HTML to build the look of your website. Template Syntax in Vue is these special rules and elements you add to regular HTML to make your website dynamic and interactive.
 
 Advanced developers who prefer to write code directly instead of using HTML templates, can use JSX. However, using JSX won't get the same speed boosts that Vue's standard HTML templates do.
 
@@ -18,7 +18,7 @@ You need special syntax in Vue in the following scenarios:
 
 Text interpolation is a way to insert dynamic data directly into your text or HTML.
 
-**Aim:**
+**Purpose:**
 
 Text interpolation allows you to put a placeholder in your HTML that automatically gets filled in with the correct data from your application.
 
@@ -43,7 +43,7 @@ Imagine a sentence like "Hello, [Name]! Welcome to our website.". Text interpola
 
 ## Raw HTML ##
 
-**Aim**: 
+**Purpose**: 
 
 Used when you want to render raw HTML content directly into your component. 
 
@@ -60,17 +60,17 @@ When you use `v-html` on an HTML element, Vue takes the string value you provide
 
 **Code analysis**:
 
-- the `v-html` directive applies reactive behavior to the rendered DOM. This directive gives the following instruction:  "keep this element's inner HTML up-to-date with the rawHtml property on the current active instance."
+- the `v-html` directive applies reactive behavior to the rendered DOM. This directive gives the following instruction:  "keep this element's inner HTML up-to-date with the `rawHtml` property on the current active instance."
 
-- The contents of the span will be replaced with the value of the rawHtml property, interpreted as plain HTML - data bindings are ignored. 
+- The contents of the span will be replaced with the value of the `rawHtml property`, interpreted as plain HTML - data bindings are ignored. 
 
-- Note that you cannot use v-html to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition
+- Note that you cannot use `v-html` to compose template partials, because Vue is not a string-based templating engine. Instead, components are preferred as the fundamental unit for UI reuse and composition
 
 
 :::caution
 Using `v-html` with content from an untrusted source can cause Cross-Site Scripting (XSS) attacks.  This is when untrusted content contains malicious JavaScript which executes in your users' browsers.
 
-Only use v-html on trusted content and never on user-provided content.
+Only use `v-html` on trusted content and never on user-provided content.
 :::
 
 ***
@@ -78,8 +78,7 @@ Only use v-html on trusted content and never on user-provided content.
 
 ## Attribute Bindings ## 
 
-**Aim:**
-
+**Purpose:** To dynamically set HTML attributes based on your component's data and state. For example, instead of static attributes, you can use data properties that change based on user login, API responses, etc.
 
 
 **Implementing attribute bindings in Vue**
@@ -107,7 +106,7 @@ Only use v-html on trusted content and never on user-provided content.
 
 **Code analysis:**
 
-- Attributes that start with : may look a bit different from normal HTML, but it is in fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. 
+- Attributes that start with `:` may look a bit different from normal HTML, but it is in fact a valid character for attribute names and all Vue-supported browsers can parse it correctly. 
 - In addition, they do not appear in the final rendered markup. The shorthand syntax is optional, but you will likely appreciate it when you learn more about its usage later.
 
 

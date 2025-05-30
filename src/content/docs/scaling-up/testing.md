@@ -23,7 +23,7 @@ Start testing early.  Begin writing tests as soon as you can. The longer you wai
 
 ## Testing Types
 
-### Summary comparison of the testing types
+### Comparison of the Testing Types
 
 |               | Unit testing                                                                        | Component testing                                                                                                 | End to End testing                                                                                                                       |
 |---------------|-------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -84,10 +84,12 @@ There are two instances where you DO unit test Vue-specific features:
 
 Composables
 ​
+
 One category of functions specific to Vue applications is Composables, which may require special handling during tests. See Testing Composables below for more details.
 
 Components
 ​
+
 A component can be tested in two ways:
 
 - Whitebox (Unit Testing)
@@ -155,21 +157,23 @@ We recommend using @vue/test-utils for testing components in applications. @test
 
 While end-to-end (E2E) testing on the web has gained a negative reputation for unreliable (flaky) tests and slowing down development processes, modern E2E tools have made strides forward to create more reliable, interactive, and useful tests. 
 
-- Cross-browser testing
+- **Cross-browser testing**
 ​
+
 One of the main features of end-to-end (E2E) testing is its ability to test your application across multiple browsers. While it may seem desirable to have 100% cross-browser coverage, cross browser testing has diminishing returns on a team's resources due to the additional time and machine power required to run them consistently. Therefore, it is important to be mindful of this trade-off when choosing the amount of cross-browser testing your application needs.
 
-- Faster feedback loops
+- **Faster feedback loops**
 ​
+
 One of the main problems with end-to-end (E2E) tests and development is that running the entire suite takes a long time. Typically, this is only done in continuous integration and deployment (CI/CD) pipelines. 
 
 Modern E2E testing frameworks have solved this problem by adding features like parallelization, which allows for CI/CD pipelines to run faster than before. In addition, modern solutions allow you to selectively run a single test for the page you are working on while providing hot reloading of tests. This boosts a developer's workflow and productivity.
 
-- First-class debugging experience
+- **First-class debugging experience**
 ​
 While developers have traditionally relied on scanning logs in a terminal window to help determine what went wrong in a test, modern end-to-end (E2E) test frameworks allow developers to leverage tools they are already familiar with, e.g. browser developer tools.
 
-- Visibility in headless mode
+- **Visibility in headless mode**
 ​
 When end-to-end (E2E) tests are run in continuous integration/deployment pipelines, they are often run in headless browsers (i.e., no visible browser is opened for the user to watch). 
 
@@ -213,7 +217,7 @@ export default defineConfig({
 })
 ```
 
-3. Then, create a file ending in *.test.js in your project. You can place all test files in a test directory in the project root or in test directories next to your source files. Vitest will automatically search for them using the naming convention.
+3. Then, create a file ending in `*.test.js` in your project. You can place all test files in a test directory in the project root or in test directories next to your source files. Vitest will automatically search for them using the naming convention.
 
 ``` js
 // MyComponent.test.js
@@ -232,7 +236,7 @@ test('it should work', () => {
 })
 ```
 
-4. update package.json to add the test script 
+4. update `package.json` to add the test script 
 
 ``` json
 {
@@ -250,4 +254,4 @@ npm test
 ```
 
 
-## Testing Composables
+

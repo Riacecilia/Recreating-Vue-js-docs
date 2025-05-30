@@ -6,9 +6,9 @@ description: How to use form input binding in Vue
 
 Form input binding is the process of setting up a two way connection between an input form field and a piece of data in your application.
 
-For example: 
+Real Life Application: A shopping cart quantity selector
 
-You are shopping on an e commerce site. You decide you want to purchase 10 items. To do this, you type '10' in the quantity field. Once this happens, the input binding automatically:
+You are shopping on an e commerce site. You decide you want to purchase 10 items. You use the selector to add '10' in the quantity field. Once this happens, the input binding automatically:
  - updates the quantity of items in your cart 
  - updates the subtotal of your items is recalculates and then 
  - updates your total cart price
@@ -26,15 +26,15 @@ To set up form input binding in Vue, use the `v-model` directive:
 Types of forms where you can use form input binding: 
 
 `v-model` can be used on inputs of different types for example:
-- text boxes
-- check boxes
-- radio buttons
-- selects  
+- Text inputs
+- Checkboxes
+- Radio buttons
+- Select dropdowns  
 
 When you use v-model on different types of form elements, Vue automatically knows how to make the two-way binding work correctly for that specific element type.
 
 Essentially, 
-- You don't have to remember different `v-bind`` properties and `v-on` events for every type of form element. 
+- You don't have to remember different `v-bind` properties and `v-on` events for every type of form element. 
 - You just use `v-model`, and Vue handles the underlying technical details of making the two-way binding work correctly for that specific element. 
 - It makes your code cleaner, more readable, and less prone to errors.
 
@@ -47,7 +47,7 @@ v-model will ignore the initial value, checked or selected attributes found on a
 ***
 ## Basic Usage ##
 
-## Text ##
+## Text Input ##
 
 **Purpose**: Apply form input binding to text input 
 
@@ -93,13 +93,8 @@ For languages that require an IME (Chinese, Japanese, Korean etc.), you'll notic
 <textarea v-model="message" placeholder="add multiple lines"></textarea>
 ```
 
-```markdown
-Multiline message is:
-
-```
 
 **Code Analysis**
- <textarea v-model="message" placeholder="add multiple lines"></textarea>
 
 - `<textarea>` tag: This is an HTML element that  allows users to enter multiple lines of text directly.
 
@@ -142,9 +137,6 @@ Instead of trying to use {{ message }} inside the `<textarea>` tags, you should 
 
 ```
 
-```markdown
-[] false 
-```
 
 **Code Analysis**: 
 - If you click the checkbox, the checkbox's state toggles from unchecked to checked.
@@ -187,14 +179,6 @@ export default {
 
 <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
 <label for="mike">Mike</label>
-```
-
-```
-Checked names: []
-[] Jack  
-[] John
-[] Mike
-
 ```
 
 **Code Analysis**: 
@@ -340,13 +324,13 @@ How it works together (Multi-Selection):
 
 - User Selects "C" (while "A" is still selected):
   - The user holds Ctrl/Cmd and clicks "C".
-  - v-model="selected" adds "C" to the selected array. selected becomes ['A', 'C'].
-  - The <div> updates to Selected: A,C.
+  - `v-model="selected"` adds "C" to the selected array. selected becomes ['A', 'C'].
+  - The `<div>` updates to `Selected: A,C`.
 
 - User Deselects "A":
   - The user holds Ctrl/Cmd and clicks "A" again.
-  - v-model="selected" removes "A" from the selected array. selected becomes ['C'].
-  - The <div> updates to Selected: C.
+  - `v-model="selected"` removes "A" from the selected array. selected becomes ['C'].
+  - The `<div>` updates to `Selected: C`.
 
 This code creates a multi-selection list box where users can choose several options. 
 
