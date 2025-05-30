@@ -165,7 +165,7 @@ export function useCount() {
 ```
 
 
-As there are multiple ways that you can implement state management, Vue is flexible. You're not locked into one specific structure (like a single reactive object). You can mix and match ref(), reactive(), and computed(), and package them neatly within Composables, to create shared, reactive state that perfectly fits the needs and scale of your application.
+As there are multiple ways that you can implement state management, Vue is flexible. You're not locked into one specific structure (like a single reactive object). You can mix and match `ref()`, `reactive()`, and `computed()`, and package them neatly within Composables, to create shared, reactive state that perfectly fits the needs and scale of your application.
 
 ## SSR Considerations for State Management 
 

@@ -4,22 +4,14 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	site: 'https://riacecilia.github.io',
+  	base: '/Recreating-Vue-js-docs',
 	integrations: [
 		starlight({
 			title: 'Vue.js',
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
+			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Riacecilia/Recreating-Vue-js-docs.git' }],
 			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
-				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
-				},
+				
 				{
 					label: 'Getting started',
 					 items: [
