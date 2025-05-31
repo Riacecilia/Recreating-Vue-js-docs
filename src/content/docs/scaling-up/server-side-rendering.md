@@ -2,14 +2,11 @@
 title: Server Side Rendering
 description: How to use server-side rendering in Vue.js
 ---
-Server side rendering is
+Server-side rendering (SSR) is a web development technique where HTML pages are generated on the server before being sent to the user's browser, rather than being built by JavaScript after the page loads.
 
+When a user requests a page, the server processes the data, renders the complete HTML content, and delivers a fully-formed page that the browser can immediately display. 
 
-## What is SSR? ##
-
-Vue.js is a framework for building client-side applications. By default, Vue components produce and manipulate DOM in the browser as output. However, it is also possible to render the same components into HTML strings on the server, send them directly to the browser, and finally "hydrate" the static markup into a fully interactive app on the client.
-
-A server-rendered Vue.js app can also be considered "isomorphic" or "universal", in the sense that the majority of your app's code runs on both the server and the client.
+SSR typically results in faster initial page loads and better search engine optimization since crawlers receive complete HTML content right away.
 
 
 ***
